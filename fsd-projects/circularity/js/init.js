@@ -31,6 +31,9 @@ var init = function (window) {
             circles.push(circle); // saves the circle to an array of circles by pushing it to the end of the array
         }
 
+           
+
+
 
         // TODO 3 : Call the drawCircle() function
         // drawCircle();
