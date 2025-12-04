@@ -15,13 +15,17 @@ var makeLevelData = function (window) {
         number: 1,
         speed: -3,
         gameItems: [
-          { type: "obstacle", x: 400, y: groundY - 110, damage: 10},
-          { type: "obstacle", x: 600, y: groundY - 20, damage: 20} ,
-          { type: "obstacle", x: 800, y: groundY - 110, damage: 30},
-          { type: "enemy", x: 400, y: groundY - 50, damage: 20} ,
-          { type: "enemy", x: 600, y: groundY - 50, damage: 30},
+          { type: "obstacle", x: 400, y: groundY - 110, damage: 10, offsetX : 0.25, offsetY : 0.25, rotation : 0},
+          { type: "obstacle", x: 600, y: groundY - 20, damage: 20, offsetX : 0.25, offsetY : 0.25, rotation : 0},
+          { type: "obstacle", x: 800, y: groundY - 110, damage: 30, offsetX : 0.25, offsetY : 0.25, rotation : 0},
+          { type: "enemy", x: 400, y: groundY - 50},
+          { type: "enemy", x: 600, y: groundY - 50},
+          { type: "reward", x: 700, y: groundY - 100},
+          { type: "reward", x: 900, y: groundY - 100},
+          { type: "reward", x: 1200, y: groundY - 50},
+          { type: "levelMarker", x: 1400, y: groundY - 100},
 
-
+        
           
         ],
       },
