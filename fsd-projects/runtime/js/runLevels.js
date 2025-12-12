@@ -14,7 +14,7 @@ var runLevels = function (window) {
     var levelData = window.opspark.levelData;
 
     // set this to true or false depending on if you want to see hitzones
-    game.setDebugMode(true);
+    game.setDebugMode(false);
 
     // TODOs 5 through 11 go here
     // BEGIN EDITING YOUR CODE HERE
@@ -22,7 +22,7 @@ var runLevels = function (window) {
   
     function createObstacle(x, y, damage, hzSize, image, offsetX, offsetY, scaleX, scaleY, rotation){
       var hitZoneSize = hzSize; //size of obstacle collision area
-      var damageFromObstacle = damage; //amount of damage the obstacle deals upon collison
+      var damageFromObstacle = damage = 10; //amount of damage the obstacle deals upon collison
       var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates the obstacle and gives it a hitzone and damage (attaches to it)
       obstacleHitZone.x = x; // creates x position for the sawblade hitzone
       obstacleHitZone.y = y; // creates y position for the sawblade hitzone
@@ -81,12 +81,14 @@ var runLevels = function (window) {
       reward.x = x; //  (setting x position)
       reward.y = y; //  (setting y position)
       game.addGameItem(reward); //adds reward to the game
+      rewardImage.scaleX = scaleX;
+      rewardImage.scaleY= scaleY;
 
       reward.velocityX -= velocityX; //moving your reward/animation enemy across screen
       
       //handles when hallebot collides with reward
       reward.onPlayerCollision = function(){
-        game.changeIntegrity(increaseHealth); //increases player health 
+        game.changeIntegrity(increaseHealth = 10); //increases player health 
         reward.fadeOut();
       };
     }
@@ -100,12 +102,14 @@ var runLevels = function (window) {
       levelMarker.x = x; //  (setting x position)
       levelMarker.y = y; //  (setting y position)
       game.addGameItem(levelMarker); //adds levelMarker to the game
+      levelImage.scaleX = scaleX;
+      levelImage.scaleY = scaleY;
 
       levelMarker.velocityX -= velocityX; //moving your levelMarker/animation enemy across screen
       
       //handles when hallebot collides with levelMarker
       levelMarker.onPlayerCollision = function(){
-        game.changeIntegrity(increaseHealth); //increases player health 
+        game.changeIntegrity(increaseHealth = 10); //increases player health 
         levelMarker.fadeOut();
         startLevel();
       };
@@ -117,20 +121,20 @@ var runLevels = function (window) {
       var level = levelData[currentLevel]; //fetches the current level from the level data array and stores it inside of our level variable
       var levelObjects = level.gameItems; //retrieves the array of gameItems and stores it in the level objects
 
-      for(var i = 0;i < levelObjects.length; i++){
+      for(var i = 0;i < levelObjects.length; i++){ //loop used for the level objects in the code, manages them.
           var element = levelObjects[i];
 
-        if(element.type === "obstacle"){
+        if(element.type === "obstacle"){ //stores all parameters used in obstacle
           createObstacle(element.x, element.y, element.damage, element.hzSize, element.image, element.offsetX, element.offsetY, element.scaleX, element.scaleY, element.rotation);
         }
-        if(element.type === "enemy"){
+        if(element.type === "enemy"){ //stores all parameters used in enemy
           createEnemy(element.x, element.y, element.damage, element.velocityX, element.image, element.score, element.offsetX, element.offsetY, element.hzSize, element.scaleX, element.scaleY);
         }
-        if(element.type === "reward"){
-          createReward(element.x, element.y, element.increaseHealth, element.velocityX, element.image, element.offsetX, element.offsetY, element.hzSize);
+        if(element.type === "reward"){ //stores all parameters used in reward
+          createReward(element.x, element.y, element.increaseHealth, element.velocityX, element.image, element.offsetX, element.offsetY, element.hzSize, element.scaleX, element.scaleY);
         }
-         if(element.type === "levelMarker"){
-          createLevelMarker(element.x, element.y, element.increaseHealth, element.velocityX, element.velocityY, element.image, element.offsetX, element.offsetY, element.hzSize)
+         if(element.type === "levelMarker"){ //stores all parameters used in levelMarker
+          createLevelMarker(element.x, element.y, element.increaseHealth, element.velocityX, element.image, element.offsetX, element.offsetY, element.hzSize, element.scaleX, element.scaleY)
           //(x, y, increaseHealth, velocityX, image, offsetX, offsetY, hzSize)
         }
 
