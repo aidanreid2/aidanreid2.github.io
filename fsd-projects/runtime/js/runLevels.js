@@ -22,7 +22,7 @@ var runLevels = function (window) {
   
     function createObstacle(x, y, damage, hzSize, image, offsetX, offsetY, scaleX, scaleY, rotation){
       var hitZoneSize = hzSize; //size of obstacle collision area
-      var damageFromObstacle = damage = 10; //amount of damage the obstacle deals upon collison
+      var damageFromObstacle = damage; //amount of damage the obstacle deals upon collison
       var obstacleHitZone = game.createObstacle(hitZoneSize, damageFromObstacle); //creates the obstacle and gives it a hitzone and damage (attaches to it)
       obstacleHitZone.x = x; // creates x position for the sawblade hitzone
       obstacleHitZone.y = y; // creates y position for the sawblade hitzone
@@ -88,7 +88,7 @@ var runLevels = function (window) {
       
       //handles when hallebot collides with reward
       reward.onPlayerCollision = function(){
-        game.changeIntegrity(increaseHealth = 10); //increases player health 
+        game.changeIntegrity(increaseHealth); //increases player health 
         reward.fadeOut();
       };
     }
@@ -109,7 +109,7 @@ var runLevels = function (window) {
       
       //handles when hallebot collides with levelMarker
       levelMarker.onPlayerCollision = function(){
-        game.changeIntegrity(increaseHealth = 10); //increases player health 
+        game.changeIntegrity(increaseHealth); //increases player health 
         levelMarker.fadeOut();
         startLevel();
       };
